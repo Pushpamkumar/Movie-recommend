@@ -1,5 +1,9 @@
-### dependency
+### dependencies
 streamlit
+pandas
+numpy
+requests
+scikit-learn
 
 ### local packages -
 -e . 
