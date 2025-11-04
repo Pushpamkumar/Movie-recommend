@@ -1,80 +1,197 @@
-<B>Project: Movie Recommender System Using Machine Learning!</B>
-<B>workflow</B>
+# 🎬 Movie Recommender System Using Machine Learning
 
-Recommendation systems are becoming increasingly important in today’s extremely busy world. People are always short on time with the myriad tasks they need to accomplish in the limited 24 hours. Therefore, the recommendation systems are important as they help them make the right choices, without having to expend their cognitive resources.<br>
+A **Movie Recommender System** that suggests movies based on user preferences using **Machine Learning** techniques such as **Cosine Similarity**.
+The project uses **content-based**, **collaborative**, and **hybrid filtering** approaches to recommend movies effectively.
 
-The purpose of a recommendation system basically is to search for content that would be interesting to an individual. Moreover, it involves a number of factors to create personalised lists of useful and interesting content specific to each user/individual. Recommendation systems are Artificial Intelligence based algorithms that skim through all possible options and create a customized list of items that are interesting and relevant to an individual. These results are based on their profile, search/browsing history, what other people with similar traits/demographics are watching, and how likely are you to watch those movies. This is achieved through predictive modeling and heuristics with the data available.<br>
+---
 
-Types of Recommendation System :
-1 ) Content Based :
-Content-based systems, which use characteristic information and takes item attriubutes into consideration .
+## 🧠 Workflow & Motivation
 
-Twitter , Youtube .
+In today’s fast-paced world, users are often overwhelmed by choices — whether it’s movies, music, or online content.
+**Recommendation systems** solve this problem by automatically suggesting relevant items based on the user's interests and behavior.
 
-Which music you are listening , what singer are you watching . Form embeddings for the features .
+This system is built using **Machine Learning algorithms** that analyze movie metadata and compute similarity between films to generate personalized recommendations.
 
-User specific actions or similar items reccomendation .
+---
 
-It will create a vector of it .
+## ⚙️ Types of Recommendation Systems
 
-These systems make recommendations using a user's item and profile features. They hypothesize that if a user was interested in an item in the past, they will once again be interested in it in the future
+### 1️⃣ Content-Based Filtering
 
-One issue that arises is making obvious recommendations because of excessive specialization (user A is only interested in categories B, C, and D, and the system is not able to recommend items outside those categories, even though they could be interesting to them).<br>
+* Uses item attributes (like genre, cast, director, etc.) to recommend similar movies.
+* Example: YouTube, Twitter.
+* Works by creating **feature embeddings** for items and finding similar vectors.
+* Drawback: Tends to overfit user preferences (“narrow recommendations”).
 
-2 ) Collaborative Based :
-Collaborative filtering systems, which are based on user-item interactions.
+### 2️⃣ Collaborative Filtering
 
-Clusters of users with same ratings , similar users .
+* Based on **user-item interactions** such as ratings and reviews.
+* Identifies clusters of users with similar preferences.
+* Example: Amazon, Netflix.
+* Drawback: Struggles with **new users/items** and can be computationally expensive due to large matrices.
 
-Book recommendation , so use cluster mechanism .
+### 3️⃣ Hybrid Filtering
 
-We take only one parameter , ratings or comments .
+* Combines both Content-Based and Collaborative methods.
+* Reduces limitations of individual systems.
+* Uses techniques like **Word2Vec** or **embedding-based similarity**.
+* Modern systems (like Spotify and Netflix) rely on this hybrid approach.
 
-In short, collaborative filtering systems are based on the assumption that if a user likes item A and another user likes the same item A as well as another item, item B, the first user could also be interested in the second item .
+---
 
-Issues are :
+## 📊 Dataset
 
-User-Item nXn matrix , so computationally expensive .
+* **Source:** [Kaggle Movie Dataset](https://www.kaggle.com/)
+* **Purpose:** Train the recommender model.
+* **Model Generation:** The system uses `cosine_similarity` to compute similarity between movie vectors.
 
-Only famous items will get reccomended .
+### 🧩 Concept Used: Cosine Similarity
 
-New items might not get reccomended at all .
+Cosine similarity measures how similar two movies are based on their feature vectors.
 
-3 ) Hybrid Based :
-Hybrid systems, which combine both types of information with the aim of avoiding problems that are generated when working with just one kind.
+```
+cosine_similarity(A, B) = (A · B) / (||A|| * ||B||)
+```
 
-Combination of both and used now a days .
+* Value ranges between **0 and 1**
+* `1` → Movies are identical
+* `0` → Movies are completely dissimilar
 
-Uses : word2vec , embedding .
+For more: [Learn DataSci - Cosine Similarity](https://www.learndatasci.com/glossary/cosine-similarity/)
 
-Dataset has been used: Kaggle
-Dataset link
-Concept used to build the model.pkl file : cosine_similarity
-1 . Cosine Similarity is a metric that allows you to measure the similarity of the documents.
+---
 
-2 . In order to demonstrate cosine similarity function we need vectors. Here vectors are numpy array.
+## 🖥️ Installation & Setup Guide
 
-3 . Finally, Once we have vectors, We can call cosine_similarity() by passing both vectors. It will calculate the cosine similarity between these two.
+Follow these steps to run the project locally:
 
-4 . It will be a value between [0,1]. If it is 0 then both vectors are complete different. But in the place of that if it is 1, It will be completely similar.
+### 1️⃣ Clone the Repository
 
-5 . For more details , check URL : https://www.learndatasci.com/glossary/cosine-similarity/
+```bash
+git clone https://github.com/Pushpamkumar/Movie-recommend.git
+cd Movie-recommend
+```
 
-How to run?
-STEPS:
-Clone the repository
+### 2️⃣ Create a Virtual Environment
 
-STEP 01- Create a conda environment after opening the repository
+Using **conda**:
+
+```bash
 conda create -n movie python=3.7.10 -y
 conda activate movie
-STEP 02- install the requirements
+```
+
+Or using **venv**:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate   # for Linux/Mac
+.venv\Scripts\activate      # for Windows
+```
+
+### 3️⃣ Install Dependencies
+
+```bash
 pip install -r requirements.txt
-#run this file to generate the models
+```
 
-Movie Recommender System Data Analysis.ipynb
-Now run,
+### 4️⃣ Generate Model Files
 
+Run the notebook to generate similarity data and models:
+
+```bash
+jupyter notebook "Movie Recommender System Data Analysis.ipynb"
+```
+
+### 5️⃣ Launch the Web App
+
+Once models are ready:
+
+```bash
 streamlit run app.py
+```
+
+The app will open in your browser at
+👉 **[http://localhost:8501](http://localhost:8501)**
+
+---
+
+## 🧩 Key Files
+
+| File                                           | Description                                 |
+| ---------------------------------------------- | ------------------------------------------- |
+| `app.py`                                       | Streamlit frontend for movie recommendation |
+| `Movie Recommender System Data Analysis.ipynb` | Model training & feature engineering        |
+| `movie_dict.pkl`, `similarity.pkl`             | Precomputed data for faster recommendations |
+| `requirements.txt`                             | Python dependencies list                    |
+
+---
+
+## 🚧 Issues Faced & Debugging Journey
+
+### ❌ Problem 1: SSL Connection Error
+
+While fetching movie posters via TMDB API, I faced this error:
+
+```
+requests.exceptions.SSLError: EOF occurred in violation of protocol (_ssl.c:1129)
+```
+
+**Cause:**
+The SSL certificate verification was failing in my local environment due to outdated CA bundles.
+
+**Fix:**
+
+1. Verified SSL path using:
+
+   ```bash
+   python -m certifi
+   ```
+2. Updated the request code to use:
+
+   ```python
+   data = requests.get(url, verify=certifi.where(), timeout=10)
+   ```
+3. Added fallback to retry with `verify=False` if SSL failed.
+4. Installed latest certificates:
+
+   ```bash
+   pip install --upgrade certifi
+   ```
+
+✅ **Result:** Posters started loading correctly and the app fetched TMDB data securely.
+---
+
+## 🧾 Output Preview
+
+The web app allows users to:
+
+* Search for a movie 🎥
+* View similar movies with posters 🖼️
+* Get clean recommendations using the trained ML model ⚡
+
+---
+
+## 💡 Future Enhancements
+
+* Add **user authentication** to personalize recommendations.
+* Integrate **sentiment analysis** for reviews.
+* Deploy using **Streamlit Cloud** or **AWS EC2**.
+* Switch from static `.pkl` models to a real-time API-based system.
+
+---
+
+## 🧑‍💻 Author
+
+**Pushpam Kumar**
+🎓 B.Tech CSE | Data Science & AI Enthusiast
+📍 Lovely professional University | Punjab
+🔗 [GitHub Profile](https://github.com/Pushpamkumar)
+
+---
+
+✨ *“Movies recommend stories; we recommend movies.”*
+
 <img width="1848" height="364" alt="image" src="https://github.com/user-attachments/assets/e0f68943-a58a-43ff-9aa3-6b215cd520e3" />
 
 
