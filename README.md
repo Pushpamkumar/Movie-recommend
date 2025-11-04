@@ -75,3 +75,9 @@ Movie Recommender System Data Analysis.ipynb
 Now run,
 
 streamlit run app.py
+<img width="1848" height="364" alt="image" src="https://github.com/user-attachments/assets/e0f68943-a58a-43ff-9aa3-6b215cd520e3" />
+
+
+
+<img width="1851" height="764" alt="image" src="https://github.com/user-attachments/assets/e689ee52-e698-457c-a842-6e8178cfe658" />
+
