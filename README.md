@@ -1,4 +1,4 @@
-# 🎬 Movie Recommender System Using Machine Learning
+# 🎬 Movie Recommender System Using Machine Learnings
 
 A **Movie Recommender System** that suggests movies based on user preferences using **Machine Learning** techniques such as **Cosine Similarity**.
 The project uses **content-based**, **collaborative**, and **hybrid filtering** approaches to recommend movies effectively.
